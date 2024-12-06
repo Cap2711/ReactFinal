@@ -5,8 +5,8 @@ function App() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [error, setError] = useState('');
-  const [showModal, setShowModal] = useState(null); // Tracks the active modal
-  const [formData, setFormData] = useState({}); // Tracks the form data for adding
+  const [showModal, setShowModal] = useState(null); 
+  const [formData, setFormData] = useState({});
 
   const handleSearch = async () => {
     if (!query.trim()) {
@@ -19,7 +19,7 @@ function App() {
       setError('');
       setResults([]);
 
-      const response = await fetch(`http://localhost:5000/search?q=${query}`); // Replace with AWS URL when deploying
+      const response = await fetch(`http://54.90.222.207/search?q=${query}`);
       const data = await response.json();
 
       if (data.length > 0) {
@@ -42,7 +42,7 @@ function App() {
         passenger: '/passengers',
       };
 
-      const response = await fetch(`http://localhost:5000${endpointMap[showModal]}`, {
+      const response = await fetch(`http://54.90.222.207${endpointMap[showModal]}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -200,7 +200,6 @@ function App() {
           )}
         </div>
 
-        {/* Add Buttons */}
         <div className="add-buttons">
           <button onClick={() => setShowModal('aircraft')}>Add an Aircraft</button>
           <button onClick={() => setShowModal('airport')}>Add an Airport</button>
@@ -208,7 +207,6 @@ function App() {
           <button onClick={() => setShowModal('passenger')}>Add a Passenger</button>
         </div>
 
-        {/* Modal */}
         {showModal && (
           <div className="modal">
             <div className="modal-content">
