@@ -21,7 +21,8 @@ function App() {
       setError('');
       setResults([]);
 
-      const response = await fetch(`${BASE_URL}/search?q=${query}`);
+      // Adjusted search URL to match your backend API
+      const response = await fetch(`${BASE_URL}/passengers/search?name=${query}`);
       const data = await response.json();
 
       if (data.length > 0) {
@@ -194,7 +195,7 @@ function App() {
               <ul>
                 {results.map((item, index) => (
                   <li key={index}>
-                    <strong>{item.name}</strong> – {JSON.stringify(item)}
+                    <strong>{item.firstName} {item.lastName}</strong> – {JSON.stringify(item)}
                   </li>
                 ))}
               </ul>
