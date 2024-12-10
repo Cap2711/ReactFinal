@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BASE_URL from './utils/config';
 import './index.css';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
       setError('');
       setResults([]);
 
-      const response = await fetch(`http://54.90.222.207/search?q=${query}`);
+      const response = await fetch(`${BASE_URL}/search?q=${query}`);
       const data = await response.json();
 
       if (data.length > 0) {
@@ -42,7 +43,7 @@ function App() {
         passenger: '/passengers',
       };
 
-      const response = await fetch(`http://54.90.222.207${endpointMap[showModal]}`, {
+      const response = await fetch(`${BASE_URL}${endpointMap[showModal]}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
