@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import BASE_URL from './utils/config';
 import './index.css';
-///yuyuyu i am here!
 
 function App() {
   const [query, setQuery] = useState('');
@@ -9,6 +8,7 @@ function App() {
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(null); 
   const [formData, setFormData] = useState({});
+  const [searchType, setSearchType] = useState('passenger'); // Default search type
 
   const handleSearch = async () => {
     if (!query.trim()) {
@@ -21,8 +21,8 @@ function App() {
       setError('');
       setResults([]);
 
-      // Adjusted search URL to match your backend API
-      const response = await fetch(`${BASE_URL}/passengers/search?name=${query}`);
+      // Adjusted search URL to match the selected search type
+      const response = await fetch(`${BASE_URL}/${searchType}/search?q=${query}`);
       const data = await response.json();
 
       if (data.length > 0) {
@@ -179,13 +179,28 @@ function App() {
 
         <div className="search-section">
           <div className="search-bar">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <button onClick={handleSearch}>Search</button>
+            <div className="input-container">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="search-input"
+              />
+            </div>
+
+            <div className="dropdown-container">
+              <select value={searchType} onChange={(e) => setSearchType(e.target.value)} className="search-dropdown">
+                <option value="passenger">Passenger</option>
+                <option value="aircraft">Aircraft</option>
+                <option value="airport">Airport</option>
+                <option value="city">City</option>
+              </select>
+            </div>
+            
+            <div className="button-container">
+              <button onClick={handleSearch} className="search-button">Search</button>
+            </div>
           </div>
 
           {error && <p className="error-message">{error}</p>}
@@ -195,7 +210,7 @@ function App() {
               <ul>
                 {results.map((item, index) => (
                   <li key={index}>
-                    <strong>{item.firstName} {item.lastName}</strong> – {JSON.stringify(item)}
+                    <strong>{item.firstName || item.name}</strong> – {JSON.stringify(item)}
                   </li>
                 ))}
               </ul>
