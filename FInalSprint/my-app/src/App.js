@@ -8,7 +8,7 @@ function App() {
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(null); 
   const [formData, setFormData] = useState({});
-  const [searchType, setSearchType] = useState('passenger'); // Default search type
+  const [searchType, setSearchType] = useState('passengers'); 
 
   const handleSearch = async () => {
     if (!query.trim()) {
@@ -21,7 +21,7 @@ function App() {
       setError('');
       setResults([]);
 
-      // Adjusted search URL to match the selected search type
+      
       const response = await fetch(`${BASE_URL}/${searchType}/search?q=${query}`);
       const data = await response.json();
 
@@ -167,7 +167,7 @@ function App() {
         <nav className="navbar">
           <h3><a href="#" target="_blank">Home</a></h3>
           <h3><a href="#" target="_blank">Bookings</a></h3>
-          <h3><a href="#" target="_blank">Airports</a></h3>
+          <h3><a href="#" target="_blank">Airport</a></h3>
           <h3><a href="#" target="_blank">About Us</a></h3>
           <h3><a href="#" target="_blank">Contact</a></h3>
         </nav>
@@ -191,10 +191,10 @@ function App() {
 
             <div className="dropdown-container">
               <select value={searchType} onChange={(e) => setSearchType(e.target.value)} className="search-dropdown">
-                <option value="passenger">Passenger</option>
+                <option value="passengers">Passengers</option>
                 <option value="aircraft">Aircraft</option>
-                <option value="airport">Airport</option>
-                <option value="city">City</option>
+                <option value="airports">Airports</option>
+                <option value="cities">Cities</option>
               </select>
             </div>
             

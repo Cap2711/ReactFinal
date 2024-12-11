@@ -208,7 +208,6 @@ body {
   margin-top: 20px;
 }
 
-/* Styling for search bar */
 .search-bar {
   display: flex;
   flex-direction: column;
@@ -222,7 +221,7 @@ body {
   width: 100%;
 }
 
-/* Styling for search input */
+
 .search-input {
   width: 100%;
   padding: 8px;
@@ -230,7 +229,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* Styling for dropdown */
+
 .search-dropdown {
   width: 100%;
   padding: 8px;
@@ -238,7 +237,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* Styling for search button */
+
 .search-button {
   width: 100%;
   padding: 10px;
@@ -246,7 +245,7 @@ body {
   cursor: pointer;
 }
 
-/* Styling for search results */
+
 .search-results {
   margin-top: 20px;
 }

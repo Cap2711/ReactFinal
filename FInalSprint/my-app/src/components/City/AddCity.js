@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import BASE_URL from '../../util/config';
+import BASE_URL from '../../utils/config';
 
 function AddCity() {
   const [name, setName] = useState('');
